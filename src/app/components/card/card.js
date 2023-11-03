@@ -4,8 +4,8 @@ import Button from '../button/button';
 import ConditionalRenderer from '../conditional-renderer';
 import getCategoryColor from '@/helpers/get-category-color';
 
-const Card = ( props ) => (
-  <div className={`${styles.card_wrap} ${props.className} || ""`}>
+const Card = (props) => (
+  <div className={`${styles.card_wrap} ${props.className || ''}`}>
     <div className={styles.card}>
       <div className={styles.card_imageWrap}>
         <div className={styles.card_image}>

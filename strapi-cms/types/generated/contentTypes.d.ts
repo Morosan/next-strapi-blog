@@ -397,7 +397,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    isFeatured: Attribute.Boolean &
+    IsFeatured: Attribute.Boolean &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -437,6 +437,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
       }>;
     slug: Attribute.String &
       Attribute.Required &
+      Attribute.Unique &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

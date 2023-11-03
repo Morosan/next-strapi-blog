@@ -1,73 +1,45 @@
 import Card from './components/card/card';
 import { IconTypes } from './components/button/button';
 import config from '@/config';
-
-const fetchBlogs = async (params) => {
-  const reqOptions = {
-    headers: {
-      Authorization: `Bearer ${process.env.API_TOKEN}`
-    }
-  };
-
-  const request = await fetch(`${config.api}/api/blogs?populate=*&${params}`, reqOptions);
-  const response = await request.json();
-
-  return response;
-}
+import fetchBlogs from '@/helpers/fetch-blogs';
 
 const Home = async () => {
   const [featuredBlogs, blogs] = await Promise.all([
-    await fetchBlogs('filters[isFeatured][$eq]=true'),
-    await fetchBlogs('filters[isFeatured][$eq]=false')
+    await fetchBlogs('filters[IsFeatured][$eq]=true'),
+    await fetchBlogs('filters[IsFeatured][$eq]=false')
   ]);
-
-  console.log("featuredBlogs.data", featuredBlogs.data)
 
   return (
     <div className="container pb-80">
       {featuredBlogs.data.map(featuredBlog => (
         <Card 
+          key={featuredBlog.id}
           label={featuredBlog.attributes.Category}
           title={featuredBlog.attributes.Title}
           summary={featuredBlog.attributes.Summary}
-          href={featuredBlog.attributes.slug}
-          imgSrc={`${config.api}/${featuredBlog.attributes.FeaturedImage.data.attributes.url}`}
+          href={`/${featuredBlog.attributes.slug}`}
+          imgSrc={`${config.api}${featuredBlog.attributes.FeaturedImage.data.attributes.url}`}
           imgAlt="Featured Image"
           btnIcon={IconTypes.ARROW_RIGHT}
           className="mb-30"
+          
         />
-      ))}
+      ))};
       <div className="row">
-        <div className="col col-4 m-mw-100">
+      {blogs.data.map(blog => (
+        <div className="col col-4 m-mw-100" key={blog.id}>
           <Card 
-            label="Opinions"
-            title="Clatite cu branza dulce la cuptor"
-            summary="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, aliquam labore architecto recusandae blanditiis saepe, velit voluptates officia ut animi veniam."
-            href="#"
+            label={blog.attributes.Category}
+            title={blog.attributes.Title}
+            summary={blog.attributes.Summary}
+            href={`/${blog.attributes.slug}`}
+            imgSrc={`${config.api}${blog.attributes.Thumbnail.data.attributes.url}`}
+            imgAlt="Thumbnail"
             btnIcon={IconTypes.ARROW_RIGHT}
             className="mb-30"
           />
         </div>
-        <div className="col col-4 m-mw-100">
-          <Card 
-            label="Desert"
-            title="Clatite cu branza dulce la cuptor"
-            summary="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, aliquam labore architecto recusandae blanditiis saepe, velit voluptates officia ut animi veniam."
-            href="#"
-            btnIcon={IconTypes.ARROW_RIGHT}
-            className="mb-30"
-          />
-        </div>
-        <div className="col col-4 m-mw-100">
-          <Card 
-            label="Travel Guides"
-            title="Clatite cu branza dulce la cuptor"
-            summary="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, aliquam labore architecto recusandae blanditiis saepe, velit voluptates officia ut animi veniam."
-            href="#"
-            btnIcon={IconTypes.ARROW_RIGHT}
-            className="mb-30"
-          />
-        </div>
+      ))};
       </div>
     </div>
   );
