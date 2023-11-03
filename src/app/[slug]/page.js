@@ -6,7 +6,7 @@ const BlogDetails = () => (
   <div className="container pb-80">
     <div className="row mb-50">
       <div className="col_9">
-        <div className={`h6 mb-20 c-${getCategoryColor('Product Reviews')}`}>Product Reviews</div>
+        <div className={`h6 mb-20 c-${getCategoryColor('Desert')}`}>Desert</div>
         <h2>title</h2>
       </div>
     </div>

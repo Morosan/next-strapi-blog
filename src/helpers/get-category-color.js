@@ -1,6 +1,6 @@
 const categoryColorMap = new Map();
 
-categoryColorMap.set("Product Reviews", "orange");
+categoryColorMap.set("Desert", "orange");
 categoryColorMap.set("Opinions", "green");
 categoryColorMap.set("Travel Guides", "purple");
 
