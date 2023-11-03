@@ -1,18 +1,32 @@
 import Image from 'next/image';
 import styles from './card.module.sass'
+import Button from '../button/button';
+import ConditionalRenderer from '../conditional-renderer';
+import getCategoryColor from '@/helpers/get-category-color';
 
-const Card = () => (
-  <div className={styles.card}>
-    <div className={styles.card_imageWrap}>
-      <div className={styles.card_image}>
-        <Image src="/clatite-cu-branza-la-cuptor.jpg" alt="thumbnail" fill={true} />
+const Card = ( props ) => (
+  <div className={`${styles.card_wrap} ${props.className} || ""`}>
+    <div className={styles.card}>
+      <div className={styles.card_imageWrap}>
+        <div className={styles.card_image}>
+          <Image src="/clatite-cu-branza-la-cuptor.jpg" alt="thumbnail" fill={true} />
+        </div>
       </div>
-    </div>
 
-    <div className={styles.card_content}>
-      <div className={`${styles.card_label} h6 mb-10 c-orange`}>Product Reviews</div>
-      <div className={`${styles.card_title} h3`}>Clatite cu branza dulce la cuptor</div>
-      <div className={styles.card_summary}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, aliquam labore architecto recusandae blanditiis saepe, velit voluptates officia ut animi veniam. Eaque nam praesentium modi nostrum. Labore adipisci nemo aspernatur.</div>
+      <div className={styles.card_content}>
+        <ConditionalRenderer condition={props.label}>
+          <div className={`${styles.card_label} h6 mb-10 c-${getCategoryColor(props.label)}`}>{props.label}</div>
+        </ConditionalRenderer>
+        <ConditionalRenderer condition={props.title}>
+          <div className={`${styles.card_title} h3 mb-20`}>{props.title}</div>
+        </ConditionalRenderer>
+        <ConditionalRenderer condition={props.summary}>
+          <div className={`${styles.card_summary} fw-600 mb-20`}>{props.summary}</div>
+        </ConditionalRenderer>
+        <ConditionalRenderer condition={props.href}>
+          <Button href={props.href} icon={props.btnIcon}>{props.btnLabel || "Read More"}</Button>
+        </ConditionalRenderer>
+      </div>
     </div>
   </div>
 );
