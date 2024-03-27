@@ -35,9 +35,23 @@
       },
       "type": "enumeration",
       "enum": [
-        "Desert",
-        "Opinions",
-        "Travel Guides"
+        "Dessert",
+        "Breakfast",
+        "Soups",
+        "Salads",
+        "Sides",
+        "Snacks",
+        "Burgers",
+        "Pizza",
+        "Pasta",
+        "Chicken",
+        "Seafood",
+        "Beef",
+        "Pork",
+        "Turkey",
+        "Duck",
+        "Bread",
+        "Sauces"
       ],
       "required": true
     },

@@ -24,7 +24,7 @@ const Home = async () => {
           className="mb-30"
           
         />
-      ))};
+      ))}
       <div className="row">
       {blogs.data.map(blog => (
         <div className="col col-4 m-mw-100" key={blog.id}>
@@ -39,7 +39,7 @@ const Home = async () => {
             className="mb-30"
           />
         </div>
-      ))};
+      ))}
       </div>
     </div>
   );

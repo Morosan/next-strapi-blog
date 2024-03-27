@@ -390,7 +390,27 @@ export interface ApiBlogBlog extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 255;
       }>;
-    Category: Attribute.Enumeration<['Desert', 'Opinions', 'Travel Guides']> &
+    Category: Attribute.Enumeration<
+      [
+        'Dessert',
+        'Breakfast',
+        'Soups',
+        'Salads',
+        'Sides',
+        'Snacks',
+        'Burgers',
+        'Pizza',
+        'Pasta',
+        'Chicken',
+        'Seafood',
+        'Beef',
+        'Pork',
+        'Turkey',
+        'Duck',
+        'Bread',
+        'Sauces'
+      ]
+    > &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
